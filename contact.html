@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Deepa College</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Custom Properties and Reset */
+        :root {
+            --primary-color: #004d40;
+            --secondary-color: #ff6f00;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .fade-in {
+            /* Start hidden */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1.2s ease-out;
+        }
+
+        .fade-in.is-visible {
+            /* The final, visible state */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color var(--transition-speed);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ======================== Typography & Buttons ======================== */
+        h2,
+        h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background var(--transition-speed);
+            cursor: pointer;
+            width: 100%;
+            /* Make buttons full-width in forms */
+            font-size: 1.05rem;
+        }
+
+        .btn:hover {
+            background: #ff8f00;
+            color: var(--white);
+        }
+
+        /* ======================== Header/Navbar ======================== */
+        #header {
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: all var(--transition-speed);
+        }
+
+        #header.sticky {
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .navbar a {
+            margin-left: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-transform: uppercase;
+        }
+
+        .navbar a:hover {
+            color: var(--secondary-color);
+        }
+
+        #menu-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            display: none;
+        }
+
+        /* ======================== Footer ======================== */
+        footer {
+            background: #222;
+            color: #aaa;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-left: 15px;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* ======================== NEW CONTACT PAGE STYLES ======================== */
+
+        /* Generic padding for content pages */
+        .page-content-wrapper {
+            padding: 120px 0 80px 0;
+            background: var(--light-bg);
+            /* Light background for this page */
+            min-height: calc(100vh - 81px);
+        }
+
+        #contact-page h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        /* Underline for the main page title */
+        #contact-page h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 10px auto 40px;
+        }
+
+        #contact-page p.intro {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        /* Two-column grid for content */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: flex-start;
+            /* Align to top */
+        }
+
+        .contact-form-container,
+        .contact-info-container {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Override default h3 centering for page sections */
+        #contact-page h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        /* Form Styling */
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(0, 77, 64, 0.3);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            /* Allow vertical resize only */
+            min-height: 120px;
+        }
+
+        /* Contact Details Styling */
+        .contact-details p {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-details i {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-right: 15px;
+            width: 25px;
+            text-align: center;
+        }
+
+        /* Responsive Google Map Container */
+        .map-container {
+            position: relative;
+            padding-bottom: 75%;
+            /* 4:3 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ======================== Media Queries (Responsiveness) ======================== */
+        @media (max-width: 992px) {
+            .navbar a {
+                margin-left: 15px;
+                font-size: 0.9rem;
+            }
+
+            /* Stack the contact grid on tablets */
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #menu-btn {
+                display: block;
+                /* Show menu button */
+            }
+
+            .navbar {
+                position: absolute;
+                top: 100%;
+                /* Below the header */
+                left: 0;
+                right: 0;
+                background: var(--primary-color);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                /* Hidden */
+                transition: clip-path 0.5s;
+            }
+
+            .navbar.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                /* Shown */
+            }
+
+            .navbar a {
+                display: block;
+                margin: 0;
+                padding: 15px 20px;
+                color: var(--white);
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            #contact-page h2 {
+                font-size: 2.2rem;
+            }
+
+            #contact-page h3 {
+                font-size: 1.6rem;
+            }
+
+            .contact-form-container,
+            .contact-info-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">Deepa College</a></h1>
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="courses.html">Courses</a>
+                <a href="contact.html">Contact</a>
+                <a href="library.html">Library</a>
+                <a href="blog.html">Blog</a>
+                <a href="announcements.html">Announcements</a>
+                <a href="magazine.html">Magazine</a>
+            </nav>
+            <div id="menu-btn" class="fas fa-bars"></div>
+        </div>
+    </header>
+
+    <main class="page-content-wrapper fade-in" id="contact-page">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p class="intro">
+                We're here to help. Whether you have a question about admissions,
+                courses, or campus life, feel free to reach out.
+            </p>
+
+            <div class="contact-grid">
+
+                <div class="contact-form-container">
+                    <h3>Send Us a Message</h3>
+                    <form action="#" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Submit Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-container">
+                    <h3>Our Information</h3>
+                    <div class="contact-details">
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            123 Education Road, Kandivali West,
+                            Mumbai, Maharashtra 400067
+                        </p>
+                        <p>
+                            <i class="fas fa-phone"></i>
+                            +91 9876543210
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            example@deepacollege.com
+                        </p>
+                        <p>
+                            <i class="fas fa-clock"></i>
+                            Mon - Fri: 9:00 AM - 5:00 PM
+                        </p>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15073.23597702913!2d72.8307137812542!3d19.18165971408115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b6e4d5f3d7ab%3A0x28c5f6f69d3b0b55!2sKandivali%20West%2C%20Mumbai%2C%20Maharashtra%20400067!5e0!3m2!1sen!2sin!4v1731683416805!5m2!1sen!2sin"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Deepa College. All rights reserved.</p>
+            <div classs="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <script>
+        // 2. Initialize Lenis for smooth scrolling
+        const lenis = new Lenis();
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 3. Add all other page logic
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ================== Sticky Header Logic ==================
+            const header = document.getElementById('header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        header.classList.add('sticky');
+                    } else {
+                        header.classList.remove('sticky');
+                    }
+                });
+            }
+
+            // ================== Mobile Menu Toggle ==================
+            const menuBtn = document.getElementById('menu-btn');
+            const navbar = document.querySelector('.navbar');
+
+            if (menuBtn && navbar) {
+                menuBtn.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+                    menuBtn.classList.toggle('fa-xmark');
+                    menuBtn.classList.toggle('fa-bars');
+                });
+            }
+
+            // ================== Close Menu on Link Click (Mobile) ==================
+            const navLinks = document.querySelectorAll('.navbar a');
+            if (navLinks && navbar && menuBtn) {
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navbar.classList.contains('active')) {
+                            navbar.classList.remove('active');
+                            menuBtn.classList.remove('fa-xmark');
+                            menuBtn.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
+
+            // ================== Intersection Observer for fade-in ==================
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% is visible
+            });
+
+            // Observe all elements with the .fade-in class
+            const elementsToFade = document.querySelectorAll('.fade-in');
+            elementsToFade.forEach((el) => {
+                observer.observe(el);
+            });
+
+        });
+    </script>
+</body>
+
+</html>

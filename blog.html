@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Deepa College</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Custom Properties and Reset */
+        :root {
+            --primary-color: #004d40;
+            --secondary-color: #ff6f00;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .fade-in {
+            /* Start hidden */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1.2s ease-out;
+        }
+
+        .fade-in.is-visible {
+            /* The final, visible state */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color var(--transition-speed);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ======================== Typography & Buttons ======================== */
+        h2,
+        h3,
+        h4 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background var(--transition-speed);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #ff8f00;
+            color: var(--white);
+        }
+
+        /* ======================== Header/Navbar ======================== */
+        #header {
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: all var(--transition-speed);
+        }
+
+        #header.sticky {
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .navbar a {
+            margin-left: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-transform: uppercase;
+        }
+
+        .navbar a:hover {
+            color: var(--secondary-color);
+        }
+
+        #menu-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            display: none;
+        }
+
+        /* ======================== Footer ======================== */
+        footer {
+            background: #222;
+            color: #aaa;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-left: 15px;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* ======================== NEW BLOG PAGE STYLES ======================== */
+
+        /* Generic padding for content pages */
+        .page-content-wrapper {
+            padding: 120px 0 80px 0;
+            background: var(--light-bg);
+            min-height: calc(100vh - 81px);
+        }
+
+        #blog-page h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        /* Underline for the main page title */
+        #blog-page h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 10px auto 40px;
+        }
+
+        #blog-page p.intro {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        /* Blog Card Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .blog-card-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .blog-meta {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .blog-card-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .blog-card-content p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-read-more {
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 3px;
+            transition: all var(--transition-speed);
+            align-self: flex-start;
+        }
+
+        .btn-read-more:hover {
+            border-bottom-color: var(--secondary-color);
+        }
+
+        /* ======================== Media Queries (Responsiveness) ======================== */
+        @media (max-width: 992px) {
+            .navbar a {
+                margin-left: 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #menu-btn {
+                display: block;
+            }
+
+            .navbar {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-color);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.5s;
+            }
+
+            .navbar.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .navbar a {
+                display: block;
+                margin: 0;
+                padding: 15px 20px;
+                color: var(--white);
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            #blog-page h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">Deepa College</a></h1>
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="courses.html">Courses</a>
+                <a href="contact.html">Contact</a>
+                <a href="library.html">Library</a>
+                <a href="blog.html">Blog</a>
+                <a href="announcements.html">Announcements</a>
+                <a href="magazine.html">Magazine</a>
+            </nav>
+            <div id="menu-btn" class="fas fa-bars"></div>
+        </div>
+    </header>
+
+    <main class="page-content-wrapper fade-in" id="blog-page">
+        <div class="container">
+            <h2>Deepa College Blog</h2>
+            <p class="intro">
+                Stay up-to-date with the latest news, stories, and insights
+                from our students, faculty, and alumni.
+            </p>
+
+            <div class="blog-grid">
+
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Graduation ceremony">
+                    </div>
+                    <div class="blog-card-content">
+                        <span class="blog-meta">Events | Nov 15, 2025</span>
+                        <h4>Convocation 2025: A Day to Remember</h4>
+                        <p>Relive the moments from our largest convocation ceremony yet, celebrating the bright future
+                            of our graduates.</p>
+                        <a href="#" class="btn-read-more">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Students studying together">
+                    </div>
+                    <div class="blog-card-content">
+                        <span class="blog-meta">Campus Life | Nov 10, 2025</span>
+                        <h4>Finding Your Niche: A Guide to Student Clubs</h4>
+                        <p>From robotics to theatre, discover how joining a student club can transform your college
+                            experience.</p>
+                        <a href="#" class="btn-read-more">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Modern engineering lab">
+                    </div>
+                    <div class="blog-card-content">
+                        <span class="blog-meta">Research | Nov 5, 2025</span>
+                        <h4>New Grant Awarded to AI Research Lab</h4>
+                        <p>Our engineering department has secured a $5M grant to further its groundbreaking research in
+                            ethical AI.</p>
+                        <a href="#" class="btn-read-more">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Professor giving a presentation">
+                    </div>
+                    <div class="blog-card-content">
+                        <span class="blog-meta">Academics | Oct 28, 2025</span>
+                        <h4>Faculty Spotlight: Dr. Priya Sharma</h4>
+                        <p>Meet the new Head of the Management School and learn about her vision for data-driven
+                            business education.</p>
+                        <a href="#" class="btn-read-more">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.pexels.com/photos/1106468/pexels-photo-1106468.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Students in a workshop">
+                    </div>
+                    <div class="blog-card-content">
+                        <span class="blog-meta">Events | Oct 22, 2025</span>
+                        <h4>Annual TechFest 'Innovate' a Resounding Success</h4>
+                        <p>See the highlights from our 3-day national technology festival, featuring guest speakers,
+                            workshops, and more.</p>
+                        <a href="#" class="btn-read-more">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Students working as a team">
+                    </div>
+                    <div class="blog-card-content">
+                        <span class="blog-meta">Campus Life | Oct 15, 2025</span>
+                        <h4>The Power of Collaboration: Inside the DC Hackathon</h4>
+                        <p>How a team of first-year students built an award-winning app in just 48 hours. A story of
+                            teamwork and code.</p>
+                        <a href="#" class="btn-read-more">Read More &rarr;</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Deepa College. All rights reserved.</p>
+            <div classs="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <script>
+        // 2. Initialize Lenis for smooth scrolling
+        const lenis = new Lenis();
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 3. Add all other page logic
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ================== Sticky Header Logic ==================
+            const header = document.getElementById('header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        header.classList.add('sticky');
+                    } else {
+                        header.classList.remove('sticky');
+                    }
+                });
+            }
+
+            // ================== Mobile Menu Toggle ==================
+            const menuBtn = document.getElementById('menu-btn');
+            const navbar = document.querySelector('.navbar');
+
+            if (menuBtn && navbar) {
+                menuBtn.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+                    menuBtn.classList.toggle('fa-xmark');
+                    menuBtn.classList.toggle('fa-bars');
+                });
+            }
+
+            // ================== Close Menu on Link Click (Mobile) ==================
+            const navLinks = document.querySelectorAll('.navbar a');
+            if (navLinks && navbar && menuBtn) {
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navbar.classList.contains('active')) {
+                            navbar.classList.remove('active');
+                            menuBtn.classList.remove('fa-xmark');
+                            menuBtn.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
+
+            // ================== Intersection Observer for fade-in ==================
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% is visible
+            });
+
+            // Observe all elements with the .fade-in class
+            const elementsToFade = document.querySelectorAll('.fade-in');
+            elementsToFade.forEach((el) => {
+                observer.observe(el);
+            });
+
+        });
+    </script>
+</body>
+
+</html>
