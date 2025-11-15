@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library - Deepa College</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    
     <style>
         /* Custom Properties and Reset */
         :root {
-            --primary-color: #004d40;
+            --primary-color: #004d40; 
             --secondary-color: #ff6f00;
             --text-color: #333;
             --light-bg: #f5f5f5;
@@ -31,18 +30,7 @@
             line-height: 1.6;
         }
 
-        .fade-in {
-            /* Start hidden */
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease-out, transform 1.2s ease-out;
-        }
-
-        .fade-in.is-visible {
-            /* The final, visible state */
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* REMOVED html { scroll-behavior: smooth; } for Lenis */
 
         a {
             text-decoration: none;
@@ -61,9 +49,7 @@
         }
 
         /* ======================== Typography & Buttons ======================== */
-        h2,
-        h3,
-        h4 {
+        h2, h3, h4 {
             margin-bottom: 20px;
             color: var(--primary-color);
             font-weight: 700;
@@ -71,8 +57,7 @@
 
         h3 {
             font-size: 2.2rem;
-            text-align: left;
-            /* Default left-align for page sections */
+            text-align: left; 
             padding-bottom: 10px;
             border-bottom: 2px solid #e0e0e0;
         }
@@ -92,7 +77,7 @@
         }
 
         .btn:hover {
-            background: #ff8f00;
+            background: #ff8f00; 
             color: var(--white);
         }
 
@@ -143,8 +128,7 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--primary-color);
-            display: none;
-            /* Hidden on desktop */
+            display: none; /* Hidden on desktop */
         }
 
         /* ======================== Footer ======================== */
@@ -170,26 +154,26 @@
         .social-links a:hover {
             color: var(--secondary-color);
         }
-
+        
         /* ======================== LIBRARY PAGE STYLES ======================== */
         .library-hero {
-            padding-top: 80px;
+            padding-top: 80px; 
             height: 50vh;
-            background: linear-gradient(rgba(0, 77, 64, 0.7), rgba(0, 77, 64, 0.7)),
-                url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?fit=crop&w=2000&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 77, 64, 0.7), rgba(0, 77, 64, 0.7)), 
+                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?fit=crop&w=2000&q=80') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--white);
         }
-
+        
         .library-hero h2 {
             font-size: 2.8rem;
             color: var(--white);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             margin-bottom: 0;
-            border-bottom: none;
+            border-bottom: none; 
             padding-bottom: 0;
         }
 
@@ -197,13 +181,12 @@
             padding: 80px 0;
             background: var(--light-bg);
         }
-
+        
         .library-content h3 {
             margin-top: 40px;
             margin-bottom: 30px;
             font-size: 2rem;
         }
-
         .library-content h3:first-child {
             margin-top: 0;
         }
@@ -232,7 +215,7 @@
             border-radius: 0 5px 5px 0;
             width: auto;
         }
-
+        
         /* Key Resources Grid */
         .resource-grid {
             display: grid;
@@ -245,13 +228,13 @@
             padding: 30px;
             border-radius: 8px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: all var(--transition-speed);
         }
 
         .resource-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
         }
 
         .resource-card i {
@@ -263,27 +246,27 @@
         .resource-card h4 {
             font-size: 1.4rem;
         }
-
+        
         /* Info Grid (Hours & Contact) */
         .info-grid-container {
             background: var(--white);
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-
+        
         .info-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 40px;
             align-items: flex-start;
         }
-
+        
         .info-grid h4,
         .library-contact-box h4 {
-            border-bottom: none;
-            padding-bottom: 0;
-            font-size: 1.4rem;
+             border-bottom: none; 
+             padding-bottom: 0;
+             font-size: 1.4rem;
         }
 
         .hours-table {
@@ -298,11 +281,11 @@
             border-bottom: 1px solid #eee;
             text-align: left;
         }
-
+        
         .hours-table th {
             color: var(--primary-color);
         }
-
+        
         .hours-table tr:last-child td {
             border-bottom: none;
         }
@@ -317,11 +300,25 @@
             margin-bottom: 15px;
             font-size: 1.05rem;
         }
-
+        
         .library-contact-box i {
             margin-right: 12px;
             color: var(--primary-color);
             width: 20px;
+        }
+
+        /* ======================== NEW ANIMATION CLASSES ======================== */
+        .fade-in {
+            /* Start hidden */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1.2s ease-out;
+        }
+
+        .fade-in.is-visible {
+            /* The final, visible state */
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ======================== Media Queries (Responsiveness) ======================== */
@@ -333,25 +330,25 @@
         }
 
         @media (max-width: 768px) {
-
+            
             #menu-btn {
-                display: block;
+                display: block; 
             }
 
             .navbar {
                 position: absolute;
-                top: 100%;
+                top: 100%; 
                 left: 0;
                 right: 0;
                 background: var(--primary-color);
                 box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); 
                 transition: clip-path 0.5s;
             }
 
             .navbar.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); 
             }
 
             .navbar a {
@@ -362,38 +359,44 @@
                 text-align: center;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
-
+            
             .library-hero h2 {
                 font-size: 2.2rem;
             }
-
+            
             .info-grid {
                 grid-template-columns: 1fr;
             }
 
-            /* **** NEWLY ADDED/FIXED STYLES FOR SEARCH BAR **** */
+            /* **** THIS IS THE DEFINITIVE FIX FOR THE SEARCH BAR **** */
+            .search-bar {
+                flex-direction: column; /* Stack input and button */
+                max-width: 100%;
+            }
+            
             .search-bar input[type="text"] {
                 padding: 12px;
                 font-size: 1rem;
-                /* Reduced font size */
+                /* Round top corners */
+                border-radius: 5px 5px 0 0; 
+                border-bottom: none; /* Remove bottom border */
             }
-
+            
             .search-bar button {
-                padding: 0 15px;
-                /* Reduced padding */
+                padding: 10px 15px; /* Add vertical padding */
                 font-size: 1rem;
-                /* Reduced font size */
+                width: 100%; /* Make button full width */
+                /* Round bottom corners */
+                border-radius: 0 0 5px 5px; 
             }
-
         }
     </style>
 </head>
-
 <body>
 
     <header id="header">
         <div class="container">
-            <h1 class="logo"><a href="index.html">Deepa College</a></h1>
+            <h1 class="logo"><a href="index.html">DC</a></h1>
             <nav class="navbar">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
@@ -408,8 +411,8 @@
         </div>
     </header>
 
-    <main class="fade-in" id="library-page">
-
+    <main id="library-page" class="fade-in">
+        
         <section class="library-hero">
             <div class="hero-content">
                 <h2>Deepa College Library</h2>
@@ -510,76 +513,75 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
-<script>
-    // 2. Initialize Lenis for smooth scrolling
-    const lenis = new Lenis();
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // 3. Add all other page logic
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // ================== Sticky Header Logic ==================
-        const header = document.getElementById('header');
-        if(header) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.classList.add('sticky');
-                } else {
-                    header.classList.remove('sticky');
-                }
-            });
+    <script>
+        // 2. Initialize Lenis for smooth scrolling
+        const lenis = new Lenis();
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
         }
+        requestAnimationFrame(raf);
 
-        // ================== Mobile Menu Toggle ==================
-        const menuBtn = document.getElementById('menu-btn');
-        const navbar = document.querySelector('.navbar');
-        
-        if (menuBtn && navbar) {
-            menuBtn.addEventListener('click', () => {
-                navbar.classList.toggle('active');
-                menuBtn.classList.toggle('fa-xmark'); 
-                menuBtn.classList.toggle('fa-bars');
-            });
-        }
+        // 3. Add all other page logic
+        document.addEventListener('DOMContentLoaded', () => {
 
-        // ================== Close Menu on Link Click (Mobile) ==================
-        const navLinks = document.querySelectorAll('.navbar a');
-        if (navLinks && navbar && menuBtn) {
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (navbar.classList.contains('active')) {
-                        navbar.classList.remove('active');
-                        menuBtn.classList.remove('fa-xmark');
-                        menuBtn.classList.add('fa-bars');
+            // ================== Sticky Header Logic ==================
+            const header = document.getElementById('header');
+            if(header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        header.classList.add('sticky');
+                    } else {
+                        header.classList.remove('sticky');
                     }
                 });
+            }
+
+            // ================== Mobile Menu Toggle ==================
+            const menuBtn = document.getElementById('menu-btn');
+            const navbar = document.querySelector('.navbar');
+            
+            if (menuBtn && navbar) {
+                menuBtn.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+                    menuBtn.classList.toggle('fa-xmark'); 
+                    menuBtn.classList.toggle('fa-bars');
+                });
+            }
+
+            // ================== Close Menu on Link Click (Mobile) ==================
+            const navLinks = document.querySelectorAll('.navbar a');
+            if (navLinks && navbar && menuBtn) {
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navbar.classList.contains('active')) {
+                            navbar.classList.remove('active');
+                            menuBtn.classList.remove('fa-xmark');
+                            menuBtn.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
+
+            // ================== Intersection Observer for fade-in ==================
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% is visible
             });
-        }
 
-        // ================== Intersection Observer for fade-in ==================
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Stop observing
-                }
+            // Observe all elements with the .fade-in class
+            const elementsToFade = document.querySelectorAll('.fade-in');
+            elementsToFade.forEach((el) => {
+                observer.observe(el);
             });
-        }, {
-            threshold: 0.1 // Trigger when 10% is visible
-        });
 
-        // Observe all elements with the .fade-in class
-        const elementsToFade = document.querySelectorAll('.fade-in');
-        elementsToFade.forEach((el) => {
-            observer.observe(el);
         });
-
-    });
-</script>
+    </script>
 </body>
-
 </html>
